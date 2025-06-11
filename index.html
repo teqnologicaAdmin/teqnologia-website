@@ -2,171 +2,442 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teqnologia LLC | IT & Cloud Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teqnologica LLC | Modern IT & Cloud Solutions</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <style>
+    :root {
+      --bg: #f0f2f5;
+      --white: #ffffff;
+      --primary: #0d1b2a;
+      --accent: #1b263b;
+      --highlight: #e63946;
+      --text: #343a40;
+      --soft: #a8dadc;
+      --radius: 12px;
+      --transition: 0.4s ease;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      transition: all var(--transition);
+    }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      background: #f4f8fb;
-      color: #222;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
+
+    /* Utility */
+    a, button { cursor: pointer; }
+    a, button, input, textarea {
+      transition: background var(--transition), color var(--transition),
+                  transform var(--transition), box-shadow var(--transition);
+    }
+
+    /* Top Info Bar */
+    .top-bar {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.8); backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      font-size: 0.9rem;
+    }
+    .top-bar a, .top-bar span {
+      color: var(--primary); text-decoration: none; margin: 0 0.5rem;
+      font-weight: 500;
+    }
+    .top-bar a:hover { color: var(--highlight); }
+
+    /* Header / Hero */
     header {
-      background: #1a237e;
-      color: #fff;
-      padding: 2rem 0 1rem 0;
+      background: var(--accent);
+      color: var(--white);
+      padding: 5rem 1rem 3rem;
       text-align: center;
+      position: relative;
     }
+    .header-content {
+      max-width: 800px; margin: auto;
+    }
+    /* Place your logo file at assets/logo.svg */
+    .logo-main {
+      height: 80px; margin-bottom: 1rem;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    }
+    header h1 {
+      font-size: 3.5rem; font-weight: 800; letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      animation: fadeInDown 1s;
+    }
+    header p.subtitle {
+      font-size: 1.2rem; opacity: 0.85; margin-bottom: 2rem;
+      animation: fadeInUp 1s;
+    }
+    .hero-buttons {
+      display: flex; justify-content: center; gap: 1rem;
+      animation: fadeIn 1.2s;
+    }
+    .hero-buttons a {
+      background: var(--white); color: var(--accent);
+      padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600;
+      text-decoration: none;
+    }
+    .hero-buttons a:hover {
+      background: var(--highlight); color: var(--white);
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    /* Navigation */
     nav {
-      background: #283593;
-      text-align: center;
-      padding: 0.5rem 0;
+      background: var(--white); padding: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky; top: 4.5rem; z-index: 90;
+    }
+    .nav-container {
+      max-width: 1100px; margin: auto;
+      display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
     }
     nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 1.5rem;
-      font-weight: 500;
-      transition: color 0.2s;
+      color: var(--primary); font-weight: 600; text-decoration: none;
+      position: relative; padding: 0.5rem;
     }
-    nav a:hover {
-      color: #ffb300;
+    nav a::after {
+      content: ""; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 3px; background: var(--highlight);
+      transition: width var(--transition);
     }
-    .container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      border-radius: 8px;
-      padding: 2rem;
+    nav a:hover::after { width: 100%; }
+
+    /* Main & Sections */
+    main {
+      max-width: 1100px; margin: 3rem auto; padding: 0 1rem;
     }
-    h1, h2, h3 {
-      color: #1a237e;
+    section {
+      background: var(--white); padding: 2rem; border-radius: var(--radius);
+      margin-bottom: 3rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      opacity: 0; transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
     }
-    .services {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-top: 1.5rem;
+    section:nth-of-type(odd)  { animation-delay: 0.2s; }
+    section:nth-of-type(even) { animation-delay: 0.4s; }
+    section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
     }
-    .service-card {
-      flex: 1 1 300px;
-      background: #e3eafc;
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 1px 4px rgba(26,35,126,0.05);
-      margin-bottom: 1rem;
+    section h2 {
+      font-size: 2rem; color: var(--highlight); margin-bottom: 1rem;
+      position: relative;
     }
-    .about, .contact, .testimonials {
-      margin-top: 2.5rem;
+    section h2::after {
+      content: ""; display: block; width: 60px; height: 4px;
+      background: var(--accent); margin-top: 0.5rem; border-radius: 2px;
     }
-    form input, form textarea {
-      width: 100%;
-      padding: 0.7rem;
-      margin-bottom: 1rem;
-      border: 1px solid #b0bec5;
-      border-radius: 4px;
-      font-size: 1rem;
+
+    /* Features */
+    .features {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 1.5rem;
     }
-    form button {
-      background: #1a237e;
-      color: #fff;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s;
+    .feature-card {
+      text-align: center; padding: 1.5rem; background: var(--soft);
+      border-radius: var(--radius); transition: transform var(--transition);
     }
-    form button:hover {
-      background: #3949ab;
+    .feature-card:hover { transform: translateY(-6px); }
+    .feature-card i {
+      font-size: 2rem; color: var(--highlight); margin-bottom: 0.75rem;
+      transition: transform 0.5s;
     }
+    .feature-card:hover i {
+      transform: rotate(15deg) scale(1.2);
+    }
+
+    /* Services List */
+    .services-list ul {
+      list-style: none; padding-left: 0; margin-top: 1rem;
+    }
+    .services-list ul li {
+      position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem;
+    }
+    .services-list ul li::before {
+      content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900;
+      position: absolute; left: 0; color: var(--accent);
+    }
+
+    /* Team */
+    .team {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 1.5rem; text-align: center;
+    }
+    .team-member {
+      padding: 1rem; border-radius: var(--radius); background: var(--white);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform var(--transition);
+    }
+    .team-member:hover { transform: translateY(-6px); }
+    .team-member img {
+      width: 100px; height: 100px; border-radius: 50%;
+      object-fit: cover; margin-bottom: 0.75rem;
+    }
+
+    /* Testimonials */
+    .testimonial-list { display: flex; flex-direction: column; gap: 1rem; }
     .testimonial {
-      background: #f1f8e9;
-      border-left: 4px solid #ffb300;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1rem;
-      border-radius: 6px;
+      padding: 1rem; background: #f9fbfc;
+      border-left: 4px solid var(--accent); border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
+
+    /* Newsletter */
+    .newsletter {
+      text-align: center; padding: 2rem; background: var(--accent);
+      color: var(--white); border-radius: var(--radius);
+    }
+    .newsletter input {
+      width: 300px; max-width: 80%; padding: 0.75rem; border: none;
+      border-radius: 50px 0 0 50px; outline: none;
+    }
+    .newsletter button {
+      padding: 0.75rem 1.5rem; border: none; border-radius: 0 50px 50px 0;
+      background: var(--highlight); color: var(--white);
+      transition: transform var(--transition);
+    }
+    .newsletter button:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    /* Contact Form */
+    #contact form {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    #contact form input, #contact form textarea {
+      grid-column: span 2; padding: 0.75rem; border: 1px solid #ccc;
+      border-radius: var(--radius);
+    }
+    #contact form button {
+      grid-column: span 2; width: 200px; margin: auto;
+      padding: 0.75rem; background: var(--highlight); color: white;
+      border: none; border-radius: var(--radius);
+      transition: transform var(--transition);
+    }
+    #contact form button:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    /* Footer */
     footer {
-      background: #1a237e;
-      color: #fff;
-      text-align: center;
-      padding: 1rem 0;
-      margin-top: 3rem;
+      background: var(--accent); color: var(--white);
+      text-align: center; padding: 2rem 1rem;
     }
-    @media (max-width: 800px) {
-      .services { flex-direction: column; }
-      .container { padding: 1rem; }
+    .social-icons a {
+      color: var(--soft); margin: 0 0.5rem; font-size: 1.25rem;
+      transition: transform var(--transition), color var(--transition);
+    }
+    .social-icons a:hover {
+      color: var(--highlight); transform: translateY(-3px) scale(1.2);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      to { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity:0; } to { opacity:1; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Teqnologia LLC</h1>
-    <p>Empowering Your Business with Reliable IT & Cloud Solutions</p>
-  </header>
-  <nav>
+
+<!-- Top Info Bar -->
+<div class="top-bar">
+  <div><a href="https://teqnologica.com">teqnologica.com</a></div>
+  <div>
+    <a href="mailto:info@teqnologica.com">info@teqnologica.com</a>
+    <span>+1 (555) 123-4567</span>
+  </div>
+</div>
+
+<!-- Header / Hero -->
+<header>
+  <div class="header-content">
+    <!-- Place your logo at assets/logo.svg -->
+    <img src="assets/logo.svg" alt="Teqnologica Logo" class="logo-main">
+    <h1>Teqnologica LLC</h1>
+    <p class="subtitle">Innovative IT, Cloud & Cybersecurity Solutions</p>
+    <div class="hero-buttons">
+      <a href="#services">Explore Services</a>
+      <a href="#contact">Get in Touch</a>
+    </div>
+  </div>
+</header>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-container">
     <a href="#services">Services</a>
-    <a href="#about">About Us</a>
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#team">Team</a>
     <a href="#testimonials">Testimonials</a>
+    <a href="#newsletter">Subscribe</a>
     <a href="#contact">Contact</a>
-  </nav>
-  <div class="container">
-    <section id="services">
-      <h2>Our Services</h2>
-      <div class="services">
-        <div class="service-card">
-          <h3>Managed IT Services</h3>
-          <p>Comprehensive IT support, monitoring, and maintenance to keep your business running smoothly and securely.</p>
-        </div>
-        <div class="service-card">
-          <h3>Cloud Solutions</h3>
-          <p>Seamless migration, management, and optimization of your cloud infrastructure—AWS, Azure, Google Cloud, and more.</p>
-        </div>
-        <div class="service-card">
-          <h3>Cybersecurity</h3>
-          <p>Protect your data and systems with advanced threat detection, prevention, and compliance solutions.</p>
-        </div>
-        <div class="service-card">
-          <h3>IT Consulting</h3>
-          <p>Strategic guidance to align your technology with your business goals for maximum efficiency and growth.</p>
-        </div>
-      </div>
-    </section>
-    <section id="about" class="about">
-      <h2>About Teqnologia LLC</h2>
-      <p>
-        Teqnologia LLC is a trusted partner for small and medium businesses seeking reliable, innovative IT and cloud solutions.
-        Our certified experts bring decades of experience in managed IT, cloud migration, cybersecurity, and technology consulting.
-      </p>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main>
+
+  <!-- Services -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services-list">
       <ul>
-        <li>Certified cloud professionals (AWS, Azure, Google Cloud)</li>
-        <li>24/7 support and monitoring</li>
-        <li>Customized solutions for every industry</li>
-        <li>Proven track record of client success</li>
+        <li>Managed IT & Network Monitoring</li>
+        <li>Cloud Migration & Hybrid Management</li>
+        <li>Custom App & Software Development</li>
+        <li>Cybersecurity & Compliance</li>
+        <li>Data Analytics & AI Solutions</li>
+        <li>DevOps & Automation</li>
       </ul>
-    </section>
-    <section id="testimonials" class="testimonials">
-      <h2>What Our Clients Say</h2>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <h2>Key Features</h2>
+    <div class="features">
+      <div class="feature-card">
+        <i class="fas fa-cloud"></i>
+        <h3>Scalable Cloud</h3>
+        <p>Elastic infrastructure on AWS, Azure & GCP.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Security First</h3>
+        <p>End-to-end encryption and threat monitoring.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-cogs"></i>
+        <h3>Full Automation</h3>
+        <p>CI/CD, IaC & workflow orchestration.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-chart-line"></i>
+        <h3>Insightful Analytics</h3>
+        <p>Real-time dashboards & predictive models.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Teqnologica</h2>
+    <p>Teqnologica LLC blends technical expertise with strategic insight to help businesses thrive in a digital-first world. Our solutions are tailored to your unique needs, ensuring reliability, scalability, and security at every step.</p>
+    <ul>
+      <li>Founded 2020 – Tech veterans at the helm</li>
+      <li>Global clientele across fintech, healthcare & retail</li>
+      <li>Certified AWS, Azure & Google Cloud partners</li>
+    </ul>
+  </section>
+
+  <!-- Team -->
+  <section id="team">
+    <h2>Our Leadership Team</h2>
+    <div class="team">
+      <div class="team-member">
+        <img src="assets/jane.jpg" alt="Jane Doe">
+        <h4>Jane Doe</h4>
+        <p>CEO & Cloud Architect</p>
+      </div>
+      <div class="team-member">
+        <img src="assets/john.jpg" alt="John Smith">
+        <h4>John Smith</h4>
+        <p>CTO & Security Lead</p>
+      </div>
+      <div class="team-member">
+        <img src="assets/alice.jpg" alt="Alice Lee">
+        <h4>Alice Lee</h4>
+        <p>Head of DevOps</p>
+      </div>
+      <div class="team-member">
+        <img src="assets/bob.jpg" alt="Bob Brown">
+        <h4>Bob Brown</h4>
+        <p>Chief Data Scientist</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <h2>Client Testimonials</h2>
+    <div class="testimonial-list">
       <div class="testimonial">
-        <p>"Teqnologia LLC transformed our IT infrastructure and made our cloud migration seamless. Their support team is outstanding!"</p>
-        <strong>- Sarah P., CTO, FinTech Corp</strong>
+        <p>“They revolutionized our cloud strategy— uptime is now 99.99%.”</p>
+        <strong>– CTO, Global Finance</strong>
       </div>
       <div class="testimonial">
-        <p>"We trust Teqnologia for all our cybersecurity needs. Their proactive approach gives us peace of mind."</p>
-        <strong>- Mike L., CEO, HealthPlus</strong>
+        <p>“Expert guidance and rapid deployment— outstanding service.”</p>
+        <strong>– CIO, Healthcare Systems</strong>
       </div>
-    </section>
-    <section id="contact" class="contact">
-      <h2>Contact Us</h2>
+      <div class="testimonial">
+        <p>“Professional team and proactive support at every step.”</p>
+        <strong>– CEO, Retail Chain</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter">
+    <h2>Join Our Newsletter</h2>
+    <div class="newsletter">
+      <h3>Stay Ahead in Tech</h3>
+      <p>Get the latest insights on cloud, security & innovation.</p>
       <form>
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
-        <button type="submit">Send Message</button>
+        <input type="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
       </form>
-      <p>
-        Or email us at <a href="mailto:info@teqnologia.com">info@teqnologia.com</a><br>
-        Call: (555) 123-4567<br>
-        123 Cloud Ave, Suite 100, Tech Ci
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Get In Touch</h2>
+    <form>
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p>
+      <a href="mailto:info@teqnologica.com">info@teqnologica.com</a><br>
+      +1 (555) 123-4567<br>
+      123 Cloud Avenue, Silicon Valley, CA
+    </p>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Teqnologica LLC. All rights reserved.</p>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</footer>
+
+</body>
+</html>
