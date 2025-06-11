@@ -4,12 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Teqnologica LLC | Modern IT & Cloud Solutions</title>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
   <style>
     :root {
       --bg: #f0f2f5;
@@ -20,12 +16,7 @@
       --text: #343a40;
       --soft: #a8dadc;
       --radius: 12px;
-      --transition: 0.4s ease;
-    }
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0; padding: 0;
-      transition: all var(--transition);
+      --transition: 0.4s cubic-bezier(0.4,0,0.2,1);
     }
     html { scroll-behavior: smooth; }
     body {
@@ -33,22 +24,21 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
-
-    /* Utility */
     a, button { cursor: pointer; }
     a, button, input, textarea {
       transition: background var(--transition), color var(--transition),
                   transform var(--transition), box-shadow var(--transition);
     }
-
-    /* Top Info Bar */
+    /* Top Bar */
     .top-bar {
       position: sticky; top: 0; z-index: 100;
       display: flex; justify-content: space-between; padding: 0.5rem 1rem;
       background: rgba(255,255,255,0.8); backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(0,0,0,0.1);
       font-size: 0.9rem;
+      animation: fadeIn 1s;
     }
     .top-bar a, .top-bar span {
       color: var(--primary); text-decoration: none; margin: 0 0.5rem;
@@ -56,26 +46,41 @@
     }
     .top-bar a:hover { color: var(--highlight); }
 
-    /* Header / Hero */
+    /* Animated Gradient Hero Background */
     header {
-      background: var(--accent);
-      color: var(--white);
-      padding: 5rem 1rem 3rem;
-      text-align: center;
       position: relative;
+      overflow: hidden;
+      background: linear-gradient(120deg, var(--accent) 40%, var(--highlight) 100%);
+      color: var(--white);
+      padding: 6rem 1rem 4rem;
+      text-align: center;
+      z-index: 1;
+    }
+    .header-bg-anim {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.06) 0, transparent 60%),
+                  radial-gradient(circle at 70% 60%, rgba(230,57,70,0.13) 0, transparent 70%);
+      animation: gradientMove 12s infinite alternate;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 30% 40%, 70% 60%; }
+      100% { background-position: 40% 30%, 60% 70%; }
     }
     .header-content {
-      max-width: 800px; margin: auto;
+      max-width: 800px; margin: auto; position: relative; z-index: 1;
     }
-    /* Place your logo file at assets/logo.svg */
-    .logo-main {
-      height: 80px; margin-bottom: 1rem;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    @keyframes floatLogo {
+      0% { transform: translateY(0);}
+      100% { transform: translateY(-12px);}
     }
     header h1 {
       font-size: 3.5rem; font-weight: 800; letter-spacing: 2px;
       margin-bottom: 0.5rem;
       animation: fadeInDown 1s;
+      text-shadow: 0 4px 32px rgba(0,0,0,0.07);
     }
     header p.subtitle {
       font-size: 1.2rem; opacity: 0.85; margin-bottom: 2rem;
@@ -89,10 +94,28 @@
       background: var(--white); color: var(--accent);
       padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600;
       text-decoration: none;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      position: relative; overflow: hidden;
     }
+    .hero-buttons a::before {
+      content: "";
+      position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+      background: linear-gradient(90deg, var(--highlight) 0%, var(--accent) 100%);
+      opacity: 0; transition: opacity 0.4s;
+      z-index: 0;
+    }
+    .hero-buttons a:hover::before { opacity: 0.16; }
     .hero-buttons a:hover {
       background: var(--highlight); color: var(--white);
       transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 32px rgba(230,57,70,0.13);
+    }
+
+    /* Parallax SVG Wave Divider */
+    .wave-divider {
+      display: block; width: 100%; height: 80px; margin-bottom: -2px;
+      background: none;
+      position: relative; z-index: 2;
     }
 
     /* Navigation */
@@ -100,6 +123,7 @@
       background: var(--white); padding: 1rem 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       position: sticky; top: 4.5rem; z-index: 90;
+      animation: fadeIn 1.2s;
     }
     .nav-container {
       max-width: 1100px; margin: auto;
@@ -124,13 +148,14 @@
       background: var(--white); padding: 2rem; border-radius: var(--radius);
       margin-bottom: 3rem;
       box-shadow: 0 6px 16px rgba(0,0,0,0.05);
-      opacity: 0; transform: translateY(20px);
-      animation: fadeInUp 0.8s forwards;
+      opacity: 0; transform: translateY(40px) scale(0.98);
+      transition: opacity 0.7s, transform 0.7s;
     }
-    section:nth-of-type(odd)  { animation-delay: 0.2s; }
-    section:nth-of-type(even) { animation-delay: 0.4s; }
+    section.visible {
+      opacity: 1; transform: translateY(0) scale(1);
+    }
     section:hover {
-      transform: translateY(-4px);
+      transform: translateY(-4px) scale(1.01);
       box-shadow: 0 12px 28px rgba(0,0,0,0.15);
     }
     section h2 {
@@ -140,6 +165,11 @@
     section h2::after {
       content: ""; display: block; width: 60px; height: 4px;
       background: var(--accent); margin-top: 0.5rem; border-radius: 2px;
+      animation: slideInBar 1s;
+    }
+    @keyframes slideInBar {
+      from { width: 0; }
+      to { width: 60px; }
     }
 
     /* Features */
@@ -149,15 +179,44 @@
     }
     .feature-card {
       text-align: center; padding: 1.5rem; background: var(--soft);
-      border-radius: var(--radius); transition: transform var(--transition);
+      border-radius: var(--radius); transition: transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
     }
-    .feature-card:hover { transform: translateY(-6px); }
+    .feature-card::before {
+      content: "";
+      position: absolute; left: -40px; top: -40px; width: 80px; height: 80px;
+      background: radial-gradient(circle, var(--highlight) 0%, transparent 80%);
+      opacity: 0.09; z-index: 0;
+      pointer-events: none;
+      animation: pulseGlow 3s infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.09; }
+      100% { opacity: 0.17; }
+    }
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 8px 32px rgba(230,57,70,0.13);
+    }
     .feature-card i {
-      font-size: 2rem; color: var(--highlight); margin-bottom: 0.75rem;
+      font-size: 2.2rem; color: var(--highlight); margin-bottom: 0.75rem;
       transition: transform 0.5s;
+      animation: iconPop 1.2s;
     }
     .feature-card:hover i {
       transform: rotate(15deg) scale(1.2);
+      animation: iconBounce 0.7s;
+    }
+    @keyframes iconPop {
+      0% { transform: scale(0.7);}
+      100% { transform: scale(1);}
+    }
+    @keyframes iconBounce {
+      0% { transform: scale(1.2);}
+      50% { transform: scale(0.95);}
+      100% { transform: scale(1.2);}
     }
 
     /* Services List */
@@ -166,10 +225,18 @@
     }
     .services-list ul li {
       position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem;
+      opacity: 0.93;
+      transition: color 0.3s;
     }
     .services-list ul li::before {
       content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900;
       position: absolute; left: 0; color: var(--accent);
+      animation: checkAppear 0.7s;
+    }
+    .services-list ul li:hover { color: var(--highlight); }
+    @keyframes checkAppear {
+      0% { opacity: 0; transform: scale(0);}
+      100% { opacity: 1; transform: scale(1);}
     }
 
     /* Team */
@@ -180,12 +247,23 @@
     .team-member {
       padding: 1rem; border-radius: var(--radius); background: var(--white);
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform var(--transition);
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
     }
-    .team-member:hover { transform: translateY(-6px); }
+    .team-member:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 28px rgba(230,57,70,0.10);
+    }
     .team-member img {
       width: 100px; height: 100px; border-radius: 50%;
       object-fit: cover; margin-bottom: 0.75rem;
+      border: 3px solid var(--soft);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: border 0.3s;
+    }
+    .team-member:hover img {
+      border: 3px solid var(--highlight);
     }
 
     /* Testimonials */
@@ -194,12 +272,31 @@
       padding: 1rem; background: #f9fbfc;
       border-left: 4px solid var(--accent); border-radius: var(--radius);
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial::before {
+      content: "\f10d";
+      font-family: "Font Awesome 5 Free"; font-weight: 900;
+      color: var(--soft); font-size: 2.5rem;
+      position: absolute; top: -20px; right: 16px; opacity: 0.09;
+      pointer-events: none;
+      animation: quoteFade 2s infinite alternate;
+    }
+    @keyframes quoteFade {
+      0% { opacity: 0.09;}
+      100% { opacity: 0.16;}
     }
 
     /* Newsletter */
     .newsletter {
       text-align: center; padding: 2rem; background: var(--accent);
       color: var(--white); border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+    .newsletter h3 {
+      animation: fadeInDown 1s;
     }
     .newsletter input {
       width: 300px; max-width: 80%; padding: 0.75rem; border: none;
@@ -212,6 +309,16 @@
     }
     .newsletter button:hover {
       transform: translateY(-3px) scale(1.05);
+      background: var(--white); color: var(--accent);
+    }
+    /* Floating icon */
+    .newsletter::after {
+      content: "\f0e0";
+      font-family: "Font Awesome 5 Free"; font-weight: 900;
+      position: absolute; font-size: 4rem; color: var(--soft);
+      right: 20px; bottom: 10px; opacity: 0.08;
+      pointer-events: none;
+      animation: floatLogo 3s infinite alternate;
     }
 
     /* Contact Form */
@@ -221,37 +328,42 @@
     #contact form input, #contact form textarea {
       grid-column: span 2; padding: 0.75rem; border: 1px solid #ccc;
       border-radius: var(--radius);
+      font-size: 1rem;
     }
     #contact form button {
       grid-column: span 2; width: 200px; margin: auto;
       padding: 0.75rem; background: var(--highlight); color: white;
       border: none; border-radius: var(--radius);
-      transition: transform var(--transition);
+      transition: transform var(--transition), background var(--transition);
     }
     #contact form button:hover {
       transform: translateY(-3px) scale(1.05);
+      background: var(--accent);
     }
 
     /* Footer */
     footer {
       background: var(--accent); color: var(--white);
       text-align: center; padding: 2rem 1rem;
+      position: relative;
+      overflow: hidden;
     }
     .social-icons a {
       color: var(--soft); margin: 0 0.5rem; font-size: 1.25rem;
       transition: transform var(--transition), color var(--transition);
+      display: inline-block;
     }
     .social-icons a:hover {
-      color: var(--highlight); transform: translateY(-3px) scale(1.2);
+      color: var(--highlight); transform: translateY(-3px) scale(1.2) rotate(-8deg);
     }
 
     /* Animations */
     @keyframes fadeInUp {
-      to { opacity:1; transform:translateY(0); }
+      to { opacity:1; transform:translateY(0) scale(1);}
     }
     @keyframes fadeInDown {
-      from { opacity:0; transform:translateY(-20px); }
-      to { opacity:1; transform:translateY(0); }
+      from { opacity:0; transform:translateY(-20px);}
+      to { opacity:1; transform:translateY(0);}
     }
     @keyframes fadeIn {
       from { opacity:0; } to { opacity:1; }
@@ -271,9 +383,8 @@
 
 <!-- Header / Hero -->
 <header>
+  <div class="header-bg-anim"></div>
   <div class="header-content">
-    <!-- Place your logo at assets/logo.svg -->
-    <img src="assets/logo.svg" alt="Teqnologica Logo" class="logo-main">
     <h1>Teqnologica LLC</h1>
     <p class="subtitle">Innovative IT, Cloud & Cybersecurity Solutions</p>
     <div class="hero-buttons">
@@ -281,7 +392,12 @@
       <a href="#contact">Get in Touch</a>
     </div>
   </div>
+  <!-- SVG Wave Divider -->
+  <svg class="wave-divider" viewBox="0 0 1440 80" preserveAspectRatio="none">
+    <path d="M0,40 C360,120 1080,0 1440,40 L1440,80 L0,80 Z" fill="#fff" />
+  </svg>
 </header>
+
 
 <!-- Navigation -->
 <nav>
@@ -298,8 +414,6 @@
 
 <!-- Main Content -->
 <main>
-
-  <!-- Services -->
   <section id="services">
     <h2>Our Services</h2>
     <div class="services-list">
@@ -313,8 +427,6 @@
       </ul>
     </div>
   </section>
-
-  <!-- Features -->
   <section id="features">
     <h2>Key Features</h2>
     <div class="features">
@@ -340,8 +452,6 @@
       </div>
     </div>
   </section>
-
-  <!-- About -->
   <section id="about">
     <h2>About Teqnologica</h2>
     <p>Teqnologica LLC blends technical expertise with strategic insight to help businesses thrive in a digital-first world. Our solutions are tailored to your unique needs, ensuring reliability, scalability, and security at every step.</p>
@@ -351,8 +461,6 @@
       <li>Certified AWS, Azure & Google Cloud partners</li>
     </ul>
   </section>
-
-  <!-- Team -->
   <section id="team">
     <h2>Our Leadership Team</h2>
     <div class="team">
@@ -378,8 +486,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Testimonials -->
   <section id="testimonials">
     <h2>Client Testimonials</h2>
     <div class="testimonial-list">
@@ -397,8 +503,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Newsletter -->
   <section id="newsletter">
     <h2>Join Our Newsletter</h2>
     <div class="newsletter">
@@ -410,8 +514,6 @@
       </form>
     </div>
   </section>
-
-  <!-- Contact -->
   <section id="contact">
     <h2>Get In Touch</h2>
     <form>
@@ -426,10 +528,7 @@
       123 Cloud Avenue, Silicon Valley, CA
     </p>
   </section>
-
 </main>
-
-<!-- Footer -->
 <footer>
   <p>&copy; 2025 Teqnologica LLC. All rights reserved.</p>
   <div class="social-icons">
@@ -438,6 +537,27 @@
     <a href="#"><i class="fab fa-linkedin-in"></i></a>
   </div>
 </footer>
+<script>
+  // Scroll reveal for sections
+  const revealSections = () => {
+    const sections = document.querySelectorAll('main section');
+    const trigger = window.innerHeight * 0.88;
+    sections.forEach(sec => {
+      const top = sec.getBoundingClientRect().top;
+      if (top < trigger) sec.classList.add('visible');
+    });
+  };
+  window.addEventListener('scroll', revealSections);
+  window.addEventListener('DOMContentLoaded', revealSections);
 
+  // Parallax effect for header SVG wave
+  document.addEventListener('mousemove', function(e) {
+    const wave = document.querySelector('.wave-divider');
+    if (wave) {
+      let x = (e.clientX / window.innerWidth - 0.5) * 20;
+      wave.style.transform = `translateY(${x}px)`;
+    }
+  });
+</script>
 </body>
 </html>
