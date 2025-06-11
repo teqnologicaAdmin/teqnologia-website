@@ -178,12 +178,15 @@
       gap: 1.5rem;
     }
     .feature-card {
-      text-align: center; padding: 1.5rem; background: var(--soft);
-      border-radius: var(--radius); transition: transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      position: relative;
-      overflow: hidden;
-    }
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
     .feature-card::before {
       content: "";
       position: absolute; left: -40px; top: -40px; width: 80px; height: 80px;
@@ -194,7 +197,7 @@
     }
     @keyframes pulseGlow {
       0% { opacity: 0.09; }
-      100% { opacity: 0.17; }
+      100% { opacity: 0.1; }
     }
     .feature-card:hover {
       transform: translateY(-8px) scale(1.04);
