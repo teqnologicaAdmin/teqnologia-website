@@ -226,6 +226,17 @@
       transform: rotate(15deg) scale(1.2);
       animation: iconBounce 0.7s;
     }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+  .features {
+    grid-template-columns: 1fr; /* Stack cards vertically on tablets/phones */
+  }
+}
+
     @keyframes iconPop {
       0% { transform: scale(0.7);}
       100% { transform: scale(1);}
@@ -286,16 +297,16 @@
       border: 3px solid var(--highlight);
     }
 
-    /* Testimonials */
-    .testimonial-list { display: flex; flex-direction: column; gap: 1rem; }
-    .testimonial {
+    /* Technologies */
+    .technologies-list { display: flex; flex-direction: column; gap: 1rem; }
+    .technologies {
       padding: 1rem; background: #f9fbfc;
       border-left: 4px solid var(--accent); border-radius: var(--radius);
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       position: relative;
       overflow: hidden;
     }
-    .testimonial::before {
+    .technologies::before {
       content: "\f10d";
       font-family: "Font Awesome 5 Free"; font-weight: 900;
       color: var(--soft); font-size: 2.5rem;
@@ -473,7 +484,7 @@
     <a href="#features">Features</a>
     <a href="#about">About</a>
     <a href="#team">Team</a>
-    <a href="#testimonials">Testimonials</a>
+    <a href="#technologies">Technologies</a>
     <a href="#newsletter">Subscribe</a>
     <a href="#contact">Contact</a>
   </div>
@@ -539,21 +550,63 @@
     </ul>
   </section>
   <section id="team">
-    <h2>Our Leadership Team</h2>
+    <h2>We Build Solutions. You Grow Smarter.</h2>
     <div class="team">
       <div class="team-member">
-        <img src="" alt="">
-        <h4></h4>
-        <p>CEO</p>
+        <h4>Job Analysis and Workforce Planning</h4>
+        <p>Job analysis involves identifying the requirements, duties, and responsibilities of a position. Workforce planning is the strategic process of forecasting an organization's future hiring needs and developing strategies to meet those needs effectively.</p>
       </div>
     </div>
   </section>
-  <section id="testimonials">
-    <h2>Client Testimonials</h2>
-    <div class="testimonial-list">
-      <div class="testimonial">
-        <p></p>
-        <strong></strong>
+  <section id="technologies">
+    <h2>Technologies We Support</h2>
+    <div class="technologies-list">
+      <div class="technologies">
+        <strong>Cloud & Infrastructure</strong>
+        <p>Amazon Web Services (AWS),
+          Microsoft Azure,
+          Google Cloud Platform (GCP),
+          Infrastructure as Code (Terraform, CloudFormation),
+          Containerization & Orchestration (Docker, Kubernetes),
+          Serverless Architecture</p>
+      </div>
+      <div class="technologies">
+        <strong>Software Development & Engineering</strong>
+        <p>Programming Languages (Java, Python, JavaScript, C#, PHP, Go, Ruby),
+          Web Development (React, Angular, Vue.js, Node.js, Django, Spring Boot),
+          Mobile App Development (iOS, Android, Flutter, React Native),
+          Low-Code Platforms (OutSystems, Mendix),
+          API Development (REST, SOAP, GraphQL)</p>
+      </div>
+      <div class="technologies">
+        <strong>Data Engineering & Analytics</strong>
+        <p>Databases (Oracle, MySQL, PostgreSQL, SQL Server, MongoDB, DynamoDB),
+          Big Data (Apache Spark, Hadoop, Kafka),
+          Business Intelligence (Power BI, Tableau, Looker, Qlik),
+          Data Warehousing (Snowflake, Redshift),
+          ETL Tools (Informatica, Talend, Apache NiFi)</p>
+      </div>
+      <div class="technologies">
+        <strong>Application Integration & Middleware</strong>
+        <p>Integration Platforms (Mulesoft, Dell Boomi, Tibco, WebMethods),
+          Message Brokers (RabbitMQ, Kafka),
+          API Management & Gateways (Apigee, AWS API Gateway),
+          Event-Driven Architecture</p>
+      </div>
+      <div class="technologies">
+        <strong>DevOps, Security & Monitoring</strong>
+        <p>ICI/CD Tools (Jenkins, GitHub Actions, GitLab CI),
+          Monitoring & Observability (Prometheus, Grafana, ELK Stack),
+          Configuration Management (Ansible, Puppet, Chef),
+          Identity & Access Management (IAM, OAuth, SSO),
+          Compliance & Security (SOC 2, HIPAA, GDPR, CSPM)</p>
+      </div>
+      <div class="technologies">
+        <strong>Enterprise Platforms & Tools</strong>
+        <p>CRM Platforms (Salesforce, Microsoft Dynamics, Zoho),
+          ERP Solutions (SAP, Oracle Fusion, Netsuite),
+          ITSM (ServiceNow, BMC Remedy),
+          Collaboration Tools (JIRA, Confluence, Slack, MS Teams)</p>
       </div>
     </div>
   </section>
