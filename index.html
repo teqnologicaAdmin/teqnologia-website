@@ -232,10 +232,10 @@
       gap: 1.5rem;
     }
     @media (max-width: 768px) {
-  .features {
-    grid-template-columns: 1fr; /* Stack cards vertically on tablets/phones */
-  }
-}
+      .features {
+        grid-template-columns: 1fr; /* Stack cards vertically on tablets/phones */
+      }
+    }
 
     @keyframes iconPop {
       0% { transform: scale(0.7);}
@@ -270,31 +270,41 @@
       100% { opacity: 1; transform: scale(1);}
     }
 
-    /* Team */
-    .team {
+    /* Staffing */
+    .staffing {
       display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
       gap: 1.5rem; text-align: center;
     }
-    .team-member {
+    .staffing-member {
       padding: 1rem; border-radius: var(--radius); background: var(--white);
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       transition: transform var(--transition), box-shadow var(--transition);
       position: relative;
       overflow: hidden;
     }
-    .team-member:hover {
+    .staffing-member:hover {
       transform: translateY(-6px) scale(1.03);
       box-shadow: 0 12px 28px rgba(230,57,70,0.10);
     }
-    .team-member img {
+    .staffing-member img {
       width: 100px; height: 100px; border-radius: 50%;
       object-fit: cover; margin-bottom: 0.75rem;
       border: 3px solid var(--soft);
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       transition: border 0.3s;
     }
-    .team-member:hover img {
+    .staffing-member:hover img {
       border: 3px solid var(--highlight);
+    }
+    .staffing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .staffing {
+        grid-template-columns: 1fr; /* Stack cards vertically on tablets/phones */
+      }
     }
 
     /* Technologies */
@@ -483,7 +493,7 @@
     <a href="#services">Services</a>
     <a href="#features">Features</a>
     <a href="#about">About</a>
-    <a href="#team">Team</a>
+    <a href="#staffing">Staffing</a>
     <a href="#technologies">Technologies</a>
     <a href="#newsletter">Subscribe</a>
     <a href="#contact">Contact</a>
@@ -543,18 +553,33 @@
   <section id="about">
     <h2>About Teqnologica</h2>
     <p>Teqnologica LLC blends technical expertise with strategic insight to help businesses thrive in a digital-first world. Our solutions are tailored to your unique needs, ensuring reliability, scalability, and security at every step.</p>
-    <ul>
-      <!--<li>Founded 2020 – Tech veterans at the helm</li>
-      <li>Global clientele across fintech, healthcare & retail</li>
-      <li>Certified AWS, Azure & Google Cloud partners</li>-->
-    </ul>
   </section>
-  <section id="team">
-    <h2>We Build Solutions. You Grow Smarter.</h2>
-    <div class="team">
-      <div class="team-member">
+  <section id="staffing">
+    <h2>Smart Staffing & Solutions. Smarter Growth for You.</h2>
+    <div class="staffing">
+      <div class="staffing-member">
         <h4>Job Analysis and Workforce Planning</h4>
-        <p>Job analysis involves identifying the requirements, duties, and responsibilities of a position. Workforce planning is the strategic process of forecasting an organization's future hiring needs and developing strategies to meet those needs effectively.</p>
+        <p>Job analysis defines a role’s duties and requirements, while workforce planning forecasts future hiring needs and outlines how to meet them.</p>
+      </div>
+      <div class="staffing-member">
+        <h4>Recruitment Strategies</h4>
+        <p>Recruitment strategies are methods used to attract candidates, such as job postings, social media, referrals, and agencies.</p>
+      </div>
+      <div class="staffing-member">
+        <h4>Screening and Selection</h4>
+        <p>Screening and selection involve evaluating candidates through resumes, interviews, assessments, and background checks.</p>
+      </div>
+      <div class="staffing-member">
+        <h4>Onboarding and Training</h4>
+        <p>Onboarding integrates new hires, while training equips them with the skills needed to succeed.</p>
+      </div>
+      <div class="staffing-member">
+        <h4>Compliance with Employment Laws</h4>
+        <p>Our services help your organization stay compliant with all employment laws, minimizing legal exposure and administrative burden.</p>
+      </div>
+      <div class="staffing-member">
+        <h4>Retention and Employee Engagement</h4>
+        <p>Boost retention and engagement through our proven strategies that prioritize people, culture, and performance.</p>
       </div>
     </div>
   </section>
@@ -562,7 +587,7 @@
     <h2>Technologies We Support</h2>
     <div class="technologies-list">
       <div class="technologies">
-        <strong>Cloud & Infrastructure</strong>
+        <strong>☁️ Cloud & Infrastructure</strong>
         <p>Amazon Web Services (AWS),
           Microsoft Azure,
           Google Cloud Platform (GCP),
@@ -571,7 +596,7 @@
           Serverless Architecture</p>
       </div>
       <div class="technologies">
-        <strong>Software Development & Engineering</strong>
+        <strong>💻 Software Development & Engineering</strong>
         <p>Programming Languages (Java, Python, JavaScript, C#, PHP, Go, Ruby),
           Web Development (React, Angular, Vue.js, Node.js, Django, Spring Boot),
           Mobile App Development (iOS, Android, Flutter, React Native),
@@ -579,7 +604,7 @@
           API Development (REST, SOAP, GraphQL)</p>
       </div>
       <div class="technologies">
-        <strong>Data Engineering & Analytics</strong>
+        <strong>📊 Data Engineering & Analytics</strong>
         <p>Databases (Oracle, MySQL, PostgreSQL, SQL Server, MongoDB, DynamoDB),
           Big Data (Apache Spark, Hadoop, Kafka),
           Business Intelligence (Power BI, Tableau, Looker, Qlik),
@@ -587,14 +612,14 @@
           ETL Tools (Informatica, Talend, Apache NiFi)</p>
       </div>
       <div class="technologies">
-        <strong>Application Integration & Middleware</strong>
+        <strong>🔗 Application Integration & Middleware</strong>
         <p>Integration Platforms (Mulesoft, Dell Boomi, Tibco, WebMethods),
           Message Brokers (RabbitMQ, Kafka),
           API Management & Gateways (Apigee, AWS API Gateway),
           Event-Driven Architecture</p>
       </div>
       <div class="technologies">
-        <strong>DevOps, Security & Monitoring</strong>
+        <strong>🛡️ DevOps, Security & Monitoring</strong>
         <p>ICI/CD Tools (Jenkins, GitHub Actions, GitLab CI),
           Monitoring & Observability (Prometheus, Grafana, ELK Stack),
           Configuration Management (Ansible, Puppet, Chef),
@@ -602,7 +627,7 @@
           Compliance & Security (SOC 2, HIPAA, GDPR, CSPM)</p>
       </div>
       <div class="technologies">
-        <strong>Enterprise Platforms & Tools</strong>
+        <strong>🏢 Enterprise Platforms & Tools</strong>
         <p>CRM Platforms (Salesforce, Microsoft Dynamics, Zoho),
           ERP Solutions (SAP, Oracle Fusion, Netsuite),
           ITSM (ServiceNow, BMC Remedy),
