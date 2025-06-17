@@ -550,6 +550,10 @@
       wave.style.transform = `translateY(${x}px)`;
     }
   });
+  // Scroll to top on load
+  window.addEventListener("load", function () {
+    window.scrollTo(0, 0);
+  });
 </script>
 </body>
 </html>
