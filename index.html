@@ -45,7 +45,8 @@
       color: var(--primary); text-decoration: none; margin: 0 0.5rem;
       font-weight: 500;
     }
-    .top-bar a:hover { color: var(--highlight); }
+    .top-bar a:hover { background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);}
 
     /* Animated Gradient Hero Background */
     header {
@@ -125,10 +126,20 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       position: sticky; top: 4.5rem; z-index: 90;
       animation: fadeIn 1.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     .nav-container {
       max-width: 1100px; margin: auto;
       display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+    }
+    nav.transparent-nav {
+  background: rgba(255, 255, 255, 0.1); /* White with 50% opacity */
+  box-shadow: none;
+  backdrop-filter: blur(8px); /* Optional: smooth glass effect */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); /* Add this */
+}
+    nav {
+       transition: background 0.4s ease, box-shadow 0.4s ease;
     }
     nav a {
       color: var(--primary); font-weight: 600; text-decoration: none;
@@ -151,6 +162,7 @@
       box-shadow: 0 6px 16px rgba(0,0,0,0.05);
       opacity: 0; transform: translateY(40px) scale(0.98);
       transition: opacity 0.7s, transform 0.7s;
+      scroll-margin-top: 180px; /* Adjust based on your navbar height */
     }
     section.visible {
       opacity: 1; transform: translateY(0) scale(1);
@@ -398,7 +410,11 @@
     <div style="display: flex; flex-direction: column; align-items: center;">
       <img src="logo.png" alt="Teqnologica Logo"
            style="height: 100px; margin-bottom: 0.75rem; animation: fadeInDown 1s;
-              filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.07));">
+              filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.07));"
+           style="
+  height: 100px;
+  filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.15)) drop-shadow(4px 4px 6px rgba(0,0,0,0.1));
+  transform: perspective(600px) rotateX(5deg);">
       <h1 style="margin: 0;">TEQNOLOGICA</h1>
     </div>
     <p class="subtitle">Innovative IT, Cloud & Cybersecurity Solutions</p>
@@ -586,6 +602,16 @@
   window.addEventListener("load", function () {
     window.scrollTo(0, 0);
   });
+ // Nav bar transparent on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.classList.add('transparent-nav');
+    } else {
+      nav.classList.remove('transparent-nav');
+    }
+  });
+
 </script>
 </body>
 </html>
