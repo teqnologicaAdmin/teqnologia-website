@@ -508,12 +508,44 @@
   </section>
   <section id="contact">
     <h2>Get In Touch</h2>
-    <form>
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <!-- Required: your Web3Forms access key -->
+      <input type="hidden" name="access_key" value="f4d65562-67f3-434d-a8d3-cade44fb7b19">
+      <!-- Optional: email subject -->
+      <input type="hidden" name="subject" value="New message from website">
+      <!-- Spam protection (honeypot) -->
+      <input type="checkbox" name="botcheck" style="display:none;">
+
+      <!-- User input fields -->
       <input type="text" name="name" placeholder="Name" required>
       <input type="email" name="email" placeholder="Email" required>
       <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+
       <button type="submit">Send Message</button>
     </form>
+    <div id="result"></div>
+
+    <script>
+      const form = document.getElementById('contact-form');
+      const result = document.getElementById('result');
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        result.textContent = "Please wait...";
+        const data = Object.fromEntries(new FormData(form));
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json','Accept':'application/json' },
+          body: JSON.stringify(data)
+        })
+          .then(r => r.json()).then(json => {
+            result.textContent = json.message;
+            form.reset();
+            setTimeout(() => result.textContent = "", 5000);
+          })
+          .catch(() => result.textContent = "Something went wrong.");
+      });
+    </script>
     <p>
       <a href="mailto:info@teqnologica.com">info@teqnologica.com</a><br>
       +1 (940) 236-9990<br>
