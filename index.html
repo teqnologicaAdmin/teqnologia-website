@@ -384,6 +384,21 @@
     @keyframes fadeIn {
       from { opacity:0; } to { opacity:1; }
     }
+    @media (max-width: 600px) {
+      nav {
+        padding: 0.5rem 0; /* reduce top & bottom padding */
+      }
+
+      .nav-container {
+        gap: 1rem; /* reduce spacing between nav items */
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        font-size: 0.85rem; /* smaller text size */
+        padding: 0.4rem;
+      }
+    }
   </style>
 </head>
 <body>
