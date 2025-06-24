@@ -124,7 +124,7 @@
     nav {
       background: var(--white); padding: 1rem 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      position: sticky; top: 4.5rem; z-index: 90;
+      position: sticky; top: 4rem; z-index: 90;
       animation: fadeIn 1.2s;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
@@ -133,11 +133,11 @@
       display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
     }
     nav.transparent-nav {
-  background: rgba(255, 255, 255, 0.1); /* White with 50% opacity */
-  box-shadow: none;
-  backdrop-filter: blur(8px); /* Optional: smooth glass effect */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); /* Add this */
-}
+      background: rgba(255, 255, 255, 0.75); /* White with 50% opacity */
+      box-shadow: none;
+      backdrop-filter: blur(8px); /* Optional: smooth glass effect */
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); /* Add this */
+    }
     nav {
        transition: background 0.4s ease, box-shadow 0.4s ease;
     }
@@ -151,6 +151,11 @@
       transition: width var(--transition);
     }
     nav a:hover::after { width: 100%; }
+
+    nav a.active {
+  color: var(--highlight);
+  border-bottom: 2px solid var(--highlight);
+}
 
     /* Main & Sections */
     main {
@@ -866,8 +871,28 @@
     scrollBtn.innerHTML = atBottom ? "↑" : "↓";
   });
 </script>
+<script>
+  const sections = document.querySelectorAll("main section[id]");
+  const navLinks = document.querySelectorAll("nav a");
 
+  window.addEventListener("scroll", () => {
+    let currentSection = "";
 
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 200;
+      if (scrollY >= sectionTop) {
+        currentSection = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === "#" + currentSection) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
