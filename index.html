@@ -440,6 +440,21 @@
         font-size: 0.9rem;
         padding: 0.6rem 1.25rem;
       }
+      <!--Social Media Logos-->
+     .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        padding: 20px 0;
+      }
+      .icon {
+        display: flex;
+        transition: transform 0.3s ease;
+      }
+      .icon:hover {
+        transform: scale(1.1);
+      }
+
     }
   </style>
   <!-- Umami Analytics -->
@@ -698,10 +713,42 @@
 <footer>
   <p>&copy; 2025 Teqnologica LLC. All rights reserved.</p>
   <div class="social-icons">
-    <a href="#"><i class="fab fa-facebook-f"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    <!-- X (Twitter) -->
+    <a href="#" aria-label="X (Twitter)" class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="32" height="32">
+        <path d="M18.244 5H20l-5.434 6.26L20.998 19h-4.207l-3.516-4.51L9 19H7l5.805-6.69L7.003 5h4.272l3.08 4.042z"/>
+      </svg>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="#" aria-label="LinkedIn" class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="32" height="32">
+        <path d="M4.98 3.5C3.88 3.5 3 4.38 3 5.5s.88 2 1.98 2A2 2 0 0 0 7 5.5c0-1.12-.88-2-2.02-2zM3.5 8.75h2.98v10.75H3.5V8.75zm5.25 0H12v1.48h.03c.49-.92 1.7-1.9 3.5-1.9 3.74 0 4.43 2.46 4.43 5.66V19.5h-2.98v-4.92c0-1.17-.02-2.68-1.63-2.68-1.63 0-1.88 1.27-1.88 2.59V19.5h-2.97V8.75z"/>
+      </svg>
+    </a>
+
+    <!-- Facebook -->
+    <a href="#" aria-label="Facebook" class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="32" height="32">
+        <path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-2.9h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6v1.8h3l-.5 2.9h-2.5v7A10 10 0 0 0 22 12z"/>
+      </svg>
+    </a>
+
+    <!-- Instagram -->
+    <a href="#" aria-label="Instagram" class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="32" height="32">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zM12 8a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8zm0 1.8a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zm4.2-.4a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+      </svg>
+    </a>
+
+    <!-- YouTube -->
+    <a href="#" aria-label="YouTube" class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="32" height="32">
+        <path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.7-.8-2.1-.9C16.4 5 12 5 12 5s-4.4 0-6.9.1c-.5 0-1.4.1-2.1.9C2.4 6.6 2.2 8 2.2 8S2 9.6 2 11.2v1.6c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.9.8 2.4.9 1.8.2 7.6.2 7.6.2s4.4 0 6.9-.1c.5 0 1.4-.1 2.1-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.6c0-1.6-.2-3.2-.2-3.2zM9.75 14.67v-5.34L14.25 12l-4.5 2.67z"/>
+      </svg>
+    </a>
   </div>
+
 </footer>
 <script>
   // Scroll reveal for sections
