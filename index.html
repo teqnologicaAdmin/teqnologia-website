@@ -560,6 +560,23 @@
   </div>
 </nav>
 
+<button id="scrollBtn" onclick="toggleScroll()" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 16px;
+  border: none;
+  background-color: #0d1b2a;
+  color: white;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  z-index: 9999;
+">↓
+</button>
+
+
 <!-- Main Content -->
 <main>
   <section id="services">
@@ -825,5 +842,33 @@
     window.location.replace("https://teqnologica.com/");
   }
 </script>
+<script>
+  const scrollBtn = document.getElementById("scrollBtn");
+
+  function toggleScroll() {
+    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
+
+    if (atBottom) {
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Scroll to footer
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
+    scrollBtn.innerHTML = atBottom ? "↑" : "↓";
+  });
+</script>
+
+
+
 </body>
 </html>
