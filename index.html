@@ -973,10 +973,15 @@
     <div class="newsletter">
       <h3>Stay Ahead in Tech</h3>
       <p>Get the latest insights on cloud, security & innovation.</p>
-      <form style="display: flex; flex-wrap: nowrap; gap: 8px; max-width: 100%;">
-        <input type="email" placeholder="Your email" required style="flex: 1; min-width: 0;">
+
+      <form id="newsletterForm" style="display: flex; flex-wrap: nowrap; gap: 8px; max-width: 100%;">
+        <input type="email" name="email" placeholder="Your email" required style="flex: 1; min-width: 0;">
         <button type="submit" style="white-space: nowrap;">Subscribe</button>
       </form>
+
+      <p id="confirmationMessage" style="margin-top: 10px; color: green; display: none;">
+        ✅ You’re subscribed! Check your inbox for confirmation.
+      </p>
     </div>
   </section>
   <section id="contact">
@@ -1139,6 +1144,32 @@
       if (link.getAttribute("href") === "#" + currentSection) {
         link.classList.add("active");
       }
+    });
+  });
+</script>
+<script>
+  document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = this.email.value;
+    const confirmation = document.getElementById('confirmationMessage');
+
+    fetch('YOUR_GOOGLE_SCRIPT_URL_HERE', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({ email })
+    })
+    .then(response => response.text())
+    .then(result => {
+      confirmation.style.display = 'block';
+      this.reset();
+    })
+    .catch(error => {
+      confirmation.style.display = 'block';
+      confirmation.style.color = 'red';
+      confirmation.textContent = '⚠️ There was an error. Please try again later.';
+      console.error(error);
     });
   });
 </script>
